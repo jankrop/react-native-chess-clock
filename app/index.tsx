@@ -1,7 +1,5 @@
-import {Button, Text, View} from "react-native";
-import {Link, Stack, useFocusEffect} from "expo-router";
-import {useEffect, useState} from "react";
-import * as ScreenOrientation from "expo-screen-orientation";
+import {Button, View} from "react-native";
+import {Link, Stack} from "expo-router";
 
 export default function Index() {
     return (
