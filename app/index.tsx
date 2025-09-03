@@ -28,6 +28,16 @@ export default function Index() {
                 paddingBottom: insets.bottom,
             }}>
                 <View style={{
+                    paddingTop: 40,
+                }}>
+                    <Text style={{
+                        fontSize: 32,
+                        textAlign: 'center',
+                    }}>
+                        Ultimate Chess Clock
+                    </Text>
+                </View>
+                <View style={{
                     flex: 1,
                     flexDirection: 'row',
 
