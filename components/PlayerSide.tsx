@@ -1,7 +1,5 @@
-import {useKeepAwake} from "expo-keep-awake";
-import {router, Stack, useLocalSearchParams} from "expo-router";
-import {useEffect, useState} from "react";
-import * as ScreenOrientation from "expo-screen-orientation";
+import {router} from "expo-router";
+import {useEffect} from "react";
 import {useTimer} from "react-timer-hook";
 import {useTimerResultType} from "react-timer-hook/dist/types/src/useTimer";
 import {View, Text, Pressable, StyleSheet} from "react-native";

@@ -1,9 +1,7 @@
-import {router, Stack, useLocalSearchParams} from "expo-router";
+import {Stack, useLocalSearchParams} from "expo-router";
 import * as ScreenOrientation from 'expo-screen-orientation'
-import {Pressable, Text, View, StyleSheet} from "react-native";
+import {View, StyleSheet} from "react-native";
 import {useEffect, useState} from "react";
-import {useTimer} from 'react-timer-hook';
-import {useTimerResultType} from "react-timer-hook/dist/types/src/useTimer";
 import {useKeepAwake} from "expo-keep-awake";
 
 import PlayerSide from "@/components/PlayerSide";
