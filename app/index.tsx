@@ -24,7 +24,7 @@ export default function Index() {
             }} />
             <SafeAreaView style={styles.container}>
                 <View style={styles.title}>
-                    <Text>Ultimate Chess Clock</Text>
+                    <Text style={styles.largeText}>Ultimate Chess Clock</Text>
                 </View>
                 <View style={styles.mainMenu}>
                     <View style={styles.subMenu}>
@@ -68,8 +68,6 @@ const styles = StyleSheet.create({
     },
     title: {
         paddingTop: 40,
-        fontSize: 32,
-        textAlign: 'center',
     },
     mainMenu: {
         flex: 1,
@@ -83,6 +81,7 @@ const styles = StyleSheet.create({
     },
     largeText: {
         fontSize: 32,
+        textAlign: 'center',
     },
     buttonContainerActive: {
         backgroundColor: "#0002",

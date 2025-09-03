@@ -54,7 +54,7 @@ function PlayerSide(props: PlayerSideProps) {
             ]}
         >
             <View style={styles.rotate}>
-                <Text>{ getTimeString(timer) }</Text>
+                <Text style={[styles.time, props.active && styles.timeActive]}>{ getTimeString(timer) }</Text>
             </View>
         </Pressable>
     )
@@ -76,7 +76,7 @@ export default function ClockPage() {
     function onPlayerPress(p: Player) {
         if (player != p && player != Player.NONE) return;
 
-        if (player == Player.LEFT) {
+        if (p == Player.LEFT) {
             setPlayer(Player.RIGHT)
         } else {
             setPlayer(Player.LEFT)
@@ -119,11 +119,18 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#ffffff',
-        color: '#008000',
+        color: '#009F6B',
         fontSize: 96,
     },
     playerContainerActive: {
-        backgroundColor: '#008000',
+        backgroundColor: '#009F6B',
+        color: '#ffffff',
+    },
+    time: {
+        fontSize: 96,
+        color: '#009F6B',
+    },
+    timeActive: {
         color: '#ffffff',
     },
     rotate: {
