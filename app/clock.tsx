@@ -35,10 +35,11 @@ function PlayerSide(props: PlayerSideProps) {
 
     useEffect(() => {
         if (props.active) {
+            timer.resume();
+        } else {
             const time = new Date();
             time.setMilliseconds(time.getMilliseconds() + timer.totalMilliseconds + props.addedSeconds * 1000);
             timer.restart(time);
-        } else {
             timer.pause();
         }
     }, [props.active]);
@@ -72,7 +73,10 @@ export default function ClockPage() {
     const { initialMinutes, addedSeconds } = useLocalSearchParams();
 
     const time = new Date();
-    time.setSeconds(time.getSeconds() + parseInt(initialMinutes as string) * 60);
+    time.setSeconds(
+        time.getSeconds() + parseInt(initialMinutes as string) * 60
+        - parseInt(addedSeconds as string)  // Subtracting time increment because it gets added at render for both players
+    );
 
     const [player, setPlayer] = useState<Player>(Player.NONE);
 
