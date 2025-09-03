@@ -1,7 +1,7 @@
-import {Text, Button, View, FlatList, StyleSheet} from "react-native";
+import {Text, Button, View, StyleSheet} from "react-native";
 import {Link, Stack} from "expo-router";
 import {useState} from "react";
-import {useSafeAreaInsets} from "react-native-safe-area-context";
+import {useSafeAreaInsets, SafeAreaView} from "react-native-safe-area-context";
 
 export default function Index() {
     const insets = useSafeAreaInsets();
@@ -22,32 +22,12 @@ export default function Index() {
             <Stack.Screen options={{
                 headerShown: false,
             }} />
-            <View style={{
-                flex: 1,
-                paddingTop: insets.top,
-                paddingBottom: insets.bottom,
-            }}>
-                <View style={{
-                    paddingTop: 40,
-                }}>
-                    <Text style={{
-                        fontSize: 32,
-                        textAlign: 'center',
-                    }}>
-                        Ultimate Chess Clock
-                    </Text>
+            <SafeAreaView style={styles.container}>
+                <View style={styles.title}>
+                    <Text>Ultimate Chess Clock</Text>
                 </View>
-                <View style={{
-                    flex: 1,
-                    flexDirection: 'row',
-
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                }}>
-                    <View style={{
-                        flex: 1,
-                        alignItems: 'center',
-                    }}>
+                <View style={styles.mainMenu}>
+                    <View style={styles.subMenu}>
                         {
                             possibleInitialMinutes.map((minutes, index) => (
                                 <View key={index} style={[ initialMinutes == minutes && styles.buttonContainerActive ]} >
@@ -57,16 +37,9 @@ export default function Index() {
                         }
                     </View>
 
-                    <Text style={{
-                        fontSize: 32,
-                    }}>
-                        +
-                    </Text>
+                    <Text style={styles.largeText}>+</Text>
 
-                    <View style={{
-                        flex: 1,
-                        alignItems: 'center',
-                    }}>
+                    <View style={styles.subMenu}>
                         {
                             possibleAddedSeconds.map((seconds, index) => (
                                 <View key={index} style={[ addedSeconds == seconds && styles.buttonContainerActive ]} >
@@ -76,9 +49,7 @@ export default function Index() {
                         }
                     </View>
                 </View>
-                <View style={{
-                    paddingBottom: 40,
-                }}>
+                <View style={styles.footer}>
                     <Link href={{
                         pathname: '/clock',
                         params: { initialMinutes, addedSeconds }
@@ -86,14 +57,38 @@ export default function Index() {
                         <Button title="Start" />
                     </Link>
                 </View>
-            </View>
+            </SafeAreaView>
         </>
     );
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+    title: {
+        paddingTop: 40,
+        fontSize: 32,
+        textAlign: 'center',
+    },
+    mainMenu: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    subMenu: {
+        flex: 1,
+        alignItems: 'center',
+    },
+    largeText: {
+        fontSize: 32,
+    },
     buttonContainerActive: {
         backgroundColor: "#0002",
         borderRadius: 5,
-    }
+    },
+    footer: {
+        paddingBottom: 40,
+    },
 })

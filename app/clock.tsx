@@ -50,18 +50,11 @@ function PlayerSide(props: PlayerSideProps) {
             onLongPress={() => router.navigate('/')}
             style={[
                 styles.playerContainer,
-                { backgroundColor: props.active ? '#008000': '#ffffff' },
+                props.active && styles.playerContainerActive,
             ]}
         >
-            <View style={{
-                transform: [{'rotate': '90deg'}]
-            }}>
-                <Text style={{
-                    color: props.active ? '#ffffff' : '#008000',
-                    fontSize: 96
-                }}>
-                    { getTimeString(timer) }
-                </Text>
+            <View style={styles.rotate}>
+                <Text>{ getTimeString(timer) }</Text>
             </View>
         </Pressable>
     )
@@ -99,9 +92,7 @@ export default function ClockPage() {
             <Stack.Screen options={{
                 headerShown: false,
             }}/>
-            <View style={{
-                flex: 1
-            }}>
+            <View style={styles.container}>
                 <PlayerSide
                     active={player == Player.LEFT}
                     initialTime={time}
@@ -120,9 +111,22 @@ export default function ClockPage() {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
     playerContainer: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: '#ffffff',
+        color: '#008000',
+        fontSize: 96,
+    },
+    playerContainerActive: {
+        backgroundColor: '#008000',
+        color: '#ffffff',
+    },
+    rotate: {
+        transform: [{'rotate': '90deg'}],
     }
 })
