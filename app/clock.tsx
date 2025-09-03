@@ -15,6 +15,7 @@ enum Player {
 type PlayerSideProps = {
     active: boolean;
     initialTime: Date;
+    addedSeconds: number;
     onPress: () => void;
 }
 
@@ -34,7 +35,9 @@ function PlayerSide(props: PlayerSideProps) {
 
     useEffect(() => {
         if (props.active) {
-            timer.resume();
+            const time = new Date();
+            time.setMilliseconds(time.getMilliseconds() + timer.totalMilliseconds + props.addedSeconds * 1000);
+            timer.restart(time);
         } else {
             timer.pause();
         }
@@ -66,10 +69,10 @@ function PlayerSide(props: PlayerSideProps) {
 export default function ClockPage() {
     useKeepAwake();
 
-    const { seconds } = useLocalSearchParams();
+    const { initialMinutes, addedSeconds } = useLocalSearchParams();
 
     const time = new Date();
-    time.setSeconds(time.getSeconds() + parseInt(seconds as string));
+    time.setSeconds(time.getSeconds() + parseInt(initialMinutes as string) * 60);
 
     const [player, setPlayer] = useState<Player>(Player.NONE);
 
@@ -98,11 +101,13 @@ export default function ClockPage() {
                 <PlayerSide
                     active={player == Player.LEFT}
                     initialTime={time}
+                    addedSeconds={parseInt(addedSeconds as string)}
                     onPress={() => onPlayerPress(Player.LEFT)}
                 />
                 <PlayerSide
                     active={player == Player.RIGHT}
                     initialTime={time}
+                    addedSeconds={parseInt(addedSeconds as string)}
                     onPress={() => onPlayerPress(Player.RIGHT)}
                 />
             </View>
